@@ -1,0 +1,45 @@
+mul ̄2  ̄3 = mul(λx.λy.x(x y))(λx.λy.x(x(x y)))
+
+→β (λb.(((λx.(λy.(x(x y))))(add b))(λx.(λy.y))))(λx.(λy.(x(x(x y)))))
+
+→β ((λx.(λy.(x(xy))))(add(λx.(λy.(x(x(x y)))))))(λx.(λy.y))
+
+→β (λy.((add(λx.(λy.(x(x(x y))))))((add(λx.(λy.(x(x(x y))))))y)))(λx.(λy.y))
+
+→β (add(λx.(λy.(x(x(x y))))))((add(λx.(λy.(x(x(x y))))))(λx.(λy.y))))
+
+→β (λb.((b succ)(λx.(λy.(x(x(x y)))))))((add(λx.(λy.(x(x(x y))))))(λx.(λy.y)))
+
+→β (((add(λx.(λy.(x(x(x y))))))(λx.(λy.y)))succ)(λx.(λy.(x(x(x y)))))
+
+→β (((λb.((b succ)(λx.(λy.(x(x(x y)))))))(λx.(λy.y)))succ)(λx.(λy.(x(x(x y)))))
+
+→β ((((λx.(λy.y))succ)(λx.(λy.(x(x(x y))))))succ)(λx.(λy.(x(x(x y)))))
+
+→β (((λy.y)(λx.(λy.(x(x(x y))))))succ)(λx.(λy.(x(x(x y)))))
+
+→β ((λx.(λy.(x(x(x y)))))succ)(λx.(λy.(x(x(x y)))))
+
+→β (λy.(succ(succ(succy))))(λx.(λy.(x(x(x y)))))
+
+→β succ(succ(succ(λx.(λy.(x(x(x y)))))))
+
+→β λf.(λs.(((succ(succ(λx.(λy.(x(x(x y)))))))f)(f s)))
+
+→β λf.(λs.(((λf.(λs.(((succ(λx.(λy.(x(x(x y))))))f)(f s))))f)(f s)))
+
+→β λf.(λs.((λs.(((succ(λx.(λy.(x(x(x y))))))f)(fs)))(f s)))
+
+→β λf.(λs.(((succ(λx.(λy.(x(x(x y))))))f)(f(f s)))))
+
+→β λf.(λs.(((λf.(λs.(((λx.(λy.(x(x(x y)))))f)(f s))))f)(f(f s))))
+
+→β λf.(λs.((λs.(((λx.(λy.(x(x(x y)))))f)(f s)))(f(f s))))
+
+→β λf.(λs.(((λx.(λy.(x(x(x y)))))f)(f(f(f s)))))
+
+→β λf.(λs.((λy.(f(f(f y))))(f(f(f s)))))
+
+→β λf.(λs.(f(f(f(f(f(f s)))))))
+
+=  ̄6

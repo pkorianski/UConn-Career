@@ -1,0 +1,106 @@
+(* Here is the solution! *)
+
+fun sum 0 = 0
+  | sum n = n + sum (n-1);
+
+fun sumsq 0 = 0
+  | sumsq n = n*n + sumsq (n-1);
+
+fun sumOdd 0 = 0
+  | sumOdd n = n*2-1 + sumOdd(n-1);
+
+(* usual *)
+fun fib 0 = 0
+  | fib 1 = 1
+  | fib n = fib (n-1) + fib (n-2);
+
+
+(* fast one with pairing *)
+fun fibFast n =
+    let fun fibAux 0 = (0,0)
+	  | fibAux 1 = (0,1)
+	  | fibAux n = let val (f,s)  = fibAux (n-1)
+		       in (s,f+s)
+		       end
+    in #2(fibAux n)
+    end
+
+(*
+ Simple induction on n.
+ Use a tail recursive style with accumulators for
+   - c:  the counter (from 0 to n)
+   - a:  the accumulator for the sum
+   - s:  the sign of the next term (-1)^i
+   - f:  the factorial so far.
+   - p:  the product so far.
+ We are generating the terms in the order i=1,i=2,i=3,... working up to n and
+ accumulating along the way in argument a.
+ Start the induction with
+   - accumulator == x       (for n=0)
+   - sign negative          (i=1 in formula)
+   - factorial so far to 3! (i=1 in formula)
+   - powers so far x^3      (i=1 in formula)
+ In this way, the first step of the induction (i=1)
+ *)
+fun sinappx n x =
+    let fun sinAux 0 c a s f p = a
+	  | sinAux n c a s f p = sinAux (n-1)
+					(c + 1.0)
+					(a + (s / f * p))
+					(s * ~1.0)
+					(f * (2.0 * c + 2.0) * (2.0 * c+ 3.0))
+					(p * x * x)
+    in sinAux (n-1) 1.0 x ~1.0 6.0 (x*x*x)
+    end
+
+(* This is an alternative implementation that clearly separates the computation
+   of the next sign (ns), next counter (nc), next factorial (nf) and next power (nf).
+   The algorithmic idea is identical to the version above. Note how the induction occurs
+   on 'n' whereas the counter track 2*i+1 from the formula in the specification.
+  *)
+fun sinappx2 n x =
+    let fun sinAux 0 c a s f p = a
+	  | sinAux n c a s f p = let val ns = s * ~1.0
+				     val nc = c + 2.0
+				     val nf = f * (c + 1.0) * (c + 2.0)
+				     val np = p * x * x
+				 in sinAux (n-1) nc (a + s / f * p) ns nf np
+				 end
+    in sinAux n 1.0 0.0 1.0 1.0 x
+    end
+
+(*
+ Simple induction over the n slices. One auxiliary function to compute the surface
+ of one trapeze. A second auxiliary to do the  induction over the slices and repeatedly
+ call the genBlock to accumuate each surface.
+ *)
+
+fun integrate f a b n =
+    let val w = (b - a) / (real n)
+	fun genBlock c = let val BB = f c
+			     val SB = f (c+w)
+			 in (BB + SB) * w / 2.0
+			 end
+	fun sumSlice 0 c acc = acc
+	  | sumSlice n c acc = sumSlice (n-1) (c+w) (acc + (genBlock c))
+    in sumSlice n a 0.0
+    end
+
+(*
+ Define some auxiliary functions for squaring and for accumulating the variance
+ Arguments of varAux:  the list, the number of elements in the list, the sum and the sum of squares.
+ Updates the length, sum and sum of square at each inductive step. Compute the answer in the base
+ case. Simply account for empty list there.
+ *)
+
+fun variance l =
+    let fun square x = x * x
+	fun varAux nil    n s ssq = if n=0
+				    then 0.0
+				    else (ssq/(real n)) - (square (s/(real n)))
+	  | varAux (a::l) n s ssq = varAux l (n+1) (s+ a) (ssq + square a)
+    in varAux l 0 0.0 0.0
+    end;
+
+val l = [1.0,2.0,3.0,4.0];
+variance l;

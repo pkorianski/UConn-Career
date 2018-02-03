@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main()
+{
+  int a, b, x;
+
+  printf( "Enter a: ");
+  scanf("%d", &a);
+  printf( "Enter b: ");
+  scanf("%d", &b);
+
+  /*
+    Add code to print to the standard output the integer $x$ between
+    $a$ and $b$ that takes the largest number of steps to reach 1
+    when applying the Collatz recurrence. In case $x$ is not unique,
+    print the smallest one.
+  */
+
+  printf( "Longest Collatz chain starts at %d\n", x );
+  return 0;
+}

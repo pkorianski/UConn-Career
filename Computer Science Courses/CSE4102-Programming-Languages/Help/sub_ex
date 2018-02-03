@@ -1,0 +1,87 @@
+sub  ̄3  ̄1
+
+sub = λa.λb.b pred a
+
+sub  ̄3  ̄1 = λa.λb.(b pred a)(λx.λy.x(x(xy)))(λx.λy.xy)
+
+→β λb.(b pred)(λx.(λy.(x(x(x y)))))(λx.(λy.(x y)))
+
+→β ((λx.(λy.(x y)))pred)(λx.(λy.(x(x(x y)))))
+
+→β (λy.(pred y))(λx.(λy.(x(x(x y)))))
+
+→β pred(λx.(λy.(x(x(x y)))))
+
+→β f irst(((λx.(λy.(x(x(xy)))))np)((pair zero)zero))
+
+→β (((λx.(λy.(x(x(x y)))))np)((pair zero)zero))true
+
+→β ((λy.(np(np(np y))))((pair zero)zero))true
+
+→β (np(np(np((pair zero)zero))))true
+
+→β ((pair(second(np(np((pair zero)zero)))))(succ(second(np(np((pair zero)zero))))))true
+
+→β ((λy.(λz.((z(second(np(np((pair zero)zero)))))y)))(succ(second(np(np((pair zero)zero))))))true
+
+→β (λz.((z(second(np(np((pair zero)zero)))))(succ(second(np(np((pair zero)zero)))))))true
+
+→β (true(second(np(np((pair zero)zero)))))(succ(second(np(np((pair zero)zero)))))
+
+→β (λy.(second(np(np((pair zero)zero)))))(succ(second(np(np((pair zero)zero)))))
+
+→β second(np(np((pair zero)zero)))
+
+→β (np(np((pair zero)zero)))f alse
+
+→β ((pair(second(np((pair zero)zero))))(succ(second(np((pair zero)zero)))))f alse
+
+→β ((λy.(λz.((z(second(np((pair zero)zero))))y)))(succ(second(np((pair zero)zero)))))f alse
+
+→β (λz.((z(second(np((pair zero)zero))))(succ(second(np((pair zero)zero))))))f alse
+
+→β (f alse(second(np((pair zero)zero))))(succ(second(np((pair zero)zero))))
+
+→β (λy.y)(succ(second(np((pair zero)zero))))
+
+→β succ(second(np((pair zero)zero)))
+
+→β λf.(λs.(((second(np((pair zero)zero)))f)(fs)))
+
+→β λf.(λs.((((np((pair zero)zero))f alse)f)(fs)))
+
+→β λf.(λs.(((((pair(second((pair zero)zero)))(succ(second((pair zero)zero))))f alse)f)(fs)))
+
+→β λf.(λs.(((((λy.(λz.((z(second((pair zero)zero)))y)))(succ(second((pair zero)zero))))f alse)f)(fs)))
+
+→β λf.(λs.((((λz.((z(second((pair zero)zero)))(succ(second((pair zero)zero)))))f alse)f)(f s)))
+
+→β λf.(λs.((((f alse(second((pair zero)zero)))(succ(second((pair zero)zero))))f)(f s)))
+
+→β λf.(λs.((((λy.y)(succ(second((pair zero)zero))))f)(f s)))
+
+→β λf.(λs.(((succ(second((pair zero)zero)))f)(f s)))
+
+→β λf.(λs.(((λf.(λs.(((second((pair zero)zero))f)(f s))))f)(f s)))
+
+→β λf.(λs.((λs.(((second((pair zero)zero))f)(f s)))(f s)))
+
+→β λf.(λs.(((second((pair zero)zero))f)(f(f s))))
+
+→β λf.(λs.(((((pair zero)zero)f alse)f)(f(f s))))
+
+→β λf.(λs.(((((λy.(λz.((z zero)y)))zero)f alse)f)(f(f s))))
+
+→β λf.(λs.((((λz.((z zero)zero))f alse)f)(f(f s))))
+
+→β λf.(λs.((((f alse zero)zero)f)(f(f s))))
+
+→β λf.(λs.((((λy.y)zero)f)(f(f s))))
+
+→β λf.(λs.((zero f)(f(f s))))
+
+→β λf.(λs.((λy.y)(f(f s))))
+
+→β λf.(λs.(f(f s)))
+
+=  ̄2

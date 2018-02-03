@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.patrickkorianski.adma_madlibs.MedLibSelection"
+    android:background="#B0C4DE">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Word Selection"
+        android:id="@+id/textView14"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Word One:"
+        android:id="@+id/textView15"
+        android:layout_below="@+id/textView14"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="38dp"
+        android:textStyle="bold"
+        android:textColor="#090101" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/w1ET"
+        android:layout_below="@+id/textView15"
+        android:layout_alignParentStart="true"
+        android:hint="Enter a Noun" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Word Two:"
+        android:id="@+id/textView16"
+        android:layout_below="@+id/w1ET"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textColor="#090000" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/w2ET"
+        android:layout_below="@+id/textView16"
+        android:layout_alignParentStart="true"
+        android:hint="Enter Yes or No" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Word Three:"
+        android:id="@+id/textView17"
+        android:layout_below="@+id/w2ET"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textColor="#020000" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/w3ET"
+        android:layout_below="@+id/textView17"
+        android:layout_alignParentStart="true"
+        android:hint="Enter your Name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Word Four:"
+        android:id="@+id/textView18"
+        android:layout_below="@+id/w3ET"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textColor="#050000" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/w4ET"
+        android:layout_below="@+id/textView18"
+        android:layout_alignParentStart="true"
+        android:hint="Enter Android or IOS" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Compose Sentence"
+        android:id="@+id/medComposeButton"
+        android:layout_below="@+id/w4ET"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="28dp" />
+
+</RelativeLayout>

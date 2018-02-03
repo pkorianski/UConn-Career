@@ -1,0 +1,5 @@
+This assignment does two things:
+
+File-> WordFrequent.mod takes as input a text file and counts the words and its frequencies
+
+File->AlphaFreqWords.mod takes as input a text file and counts the words and its frequencies but also sorts it alphabetically but its words

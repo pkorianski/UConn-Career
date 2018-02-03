@@ -1,0 +1,12 @@
+**README ABOUT HELLO WORLD**
+-----------------------------
+
+1. Printed "Hello World" to terminal by using: "printf"
+
+2. Returned 0 in the code to show terminal everything is in a good state
+
+3. Saved nano text file with ctrl-o
+
+4. Ran program by using the commands: "c hello.c" and then "./a.out"
+
+5. End README

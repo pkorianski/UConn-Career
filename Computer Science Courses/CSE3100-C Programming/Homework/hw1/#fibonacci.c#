@@ -1,0 +1,10 @@
+/*
+  Write a program to compute and print to the standard output
+  a) the sum of all even Fibonacci numbers smaller than 1 billion, and
+  b) the sum of all prime Fibonacci numbers smaller than 1 billion.
+*/
+
+int main()
+{
+
+}

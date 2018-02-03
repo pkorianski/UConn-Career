@@ -1,0 +1,40 @@
+Patrick Korianski
+CSE4095: Network & Computer security
+Project 2
+27 February 2017
+
+Description:
+* 6 total stages in the assignment
+* Submit the URL for your six stages as well as the final password in plaintext word file
+* Stages 1 and 2 are worth ten points
+* Stages 3-6 are worth 20 points each
+* Start by append Stage1/NetId/ to the current URL to find directions
+
+Note: I placed the passwords in the sections were I needed to type that password with its link to get to that stage
+
+STAGE 1
+* URL: http://netsec.engr.uconn.edu/Project2/Stage1/pmk14001/
+* md5sum = 9d60a186deaca014704d664a7082d898
+
+STAGE 2
+* URL: http://netsec.engr.uconn.edu/Project2/Stage2/9d60a186deaca014704d664a7082d898/
+* Password = uicFcb
+* Encryption characters while running aes-128-ecb = fstDmXZLI
+
+STAGE 3
+* URL: http://netsec.engr.uconn.edu/Project2/Stage3/fstDmXZLI
+* Password = roi
+* sha1sum = ad875274c84a6045d5c4f1a4411392690d7c05ce
+* First 10 chars of sha1sum = ad875274c8
+
+STAGE 4
+* URL: http://netsec.engr.uconn.edu/Project2/Stage4/ad875274c8
+* Password = revenue
+
+STAGE 5
+* URL: http://netsec.engr.uconn.edu/Project2/Stage5/8c472578da
+* Password= toy3
+
+STAGE 6
+* URL: http://netsec.engr.uconn.edu/Project2/Stage6/8472578
+* Password = 0pith

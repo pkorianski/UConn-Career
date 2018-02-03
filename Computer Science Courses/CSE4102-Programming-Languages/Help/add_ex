@@ -1,0 +1,29 @@
+add  ̄2  ̄3 = add(λx.(λy.(x(x y))))) (λx.(λy.(x(x(x y))))
+
+= λb.((b succ)(λx.(λy.(x(xy)))))(λx.(λy.(x(x(x y)))))
+
+= (λx.(λy.(x(x(x y))))succ)(λx.(λy.(x(x y))))
+
+→β λy.(succ(succ(succ y)))(λx.(λy.(x(x y))))
+
+→β (succ(succ(succ(λx.(λy.(x(x y)))))))
+
+→β λf.(λs.(((succ(succ(λx.(λy.(x(x y))))))f)(f s)))
+
+→β λf.λs.(λf.(λs.(((succ(λx.(λy.(x(x y)))))f)(fs)))f)(fs)
+
+→β λf.λs.((λs.(((succ(λx.(λy.(x(x y)))))f)(f s)))(f s))
+
+→β λf.λs.(((succ(λx.(λy.(x(x y)))))f)(f(f s)))
+
+→β λf.λs.((λf.(λs.(((λx.(λy.(x(x y))))f)(f s))))f)(f(f s))
+
+→β λf.λs.(λs.(((λx.(λy.(x(x y))))f)(f s)))(f(f s))
+
+→β (λf.(λs.(((λx.(λy.(x(x y))))f)(f(f(f s))))))
+
+→β λf.λs.(λy.(f(f y)))(f(f(f s)))
+
+→β λf.λs.(f(f(f(f(fs)))))
+
+=  ̄5

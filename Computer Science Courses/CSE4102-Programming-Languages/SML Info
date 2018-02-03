@@ -1,0 +1,63 @@
+Function example:
+********************
+
+val pi = 3.14;
+fun area r = pi*r*r;
+
+
+Comments begin with (* and end with *)
+
+
+An alphabetic name must
+• begin with a letter
+• followed by any number of letters, digits, underscores, or primes (')
+
+Avoid ML keyboards:
+• abstype, and, andalso, as, case, datatype, do, else, end, eqtype, exception, fn, fun, functor, handle, if, in, include, infix, infixr, let, nonfix, of, op, open, orelse, raise, rec, charing, sig, signature, sturct, structure, then, type, val, where, while, with, withtype
+
+Minus sign = ~
+
+Integer operations:
+addition (+) , subtraction (-) , multiplcation (*) , division (div), remainder (mod)
+
+Real numbers --> contain a decimal point or E notation (0.01, ~1.2E12)
+
+Infix operators for reals include (+, -, *, and /)
+
+
+To specify type of the argument
+********************************
+fun square(x : real) = x*x;  (can omit the parentheses)
+
+
+Arithmetic and the standard library -> abs, min, max, sign
+************************************
+
+Int.abs ~4;
+> 4 : int
+Int.min(7, Int.sign 12);
+> 1 : int
+
+Converting int to real -> real(i) which converts i to the equivalent real number
+
+Calling real(i) --> converts i to the equivalent real number
+
+Calling round(r) --> converts r to the nearest integer
+
+
+Other real-to-integer conversions --> floor, ceil, trunc
+
+Structure Math on real numbers --> sqrt, sin, cos, atan(inverse tan), exp and In(natural logarithm)
+
+Concatenation operator --> (^)
+
+Function size (it) --> returns the number of chars in a string
+
+
+Special Characters:
+
+\n --> inserts a newline
+\t --> inserts a tabulation
+\" --> inserts a double quote
+\\ --> inserts a backlash
+\ followed by a newline and other white-space characters, followed by another \ inserts nothing but continues a string across the line break

@@ -1,0 +1,99 @@
+(* Normal data-type for stream *)
+datatype 'a Stream = Nil
+                   | Cons of 'a * (unit -> 'a Stream);
+exception Bad of string;
+fun from seed next = Cons(seed,fn () => from (next seed) next);
+fun head (Nil) = raise Bad("got nil in head")
+  | head (Cons(a,b)) = a;
+
+fun tail (Nil) = raise Bad("got nil in tail")
+  | tail(Cons(a,b)) = b();
+
+fun take 0 stream      = nil
+  | take n (Nil)       = raise Bad("got nil in take")
+  | take n (Cons(h,t)) = h::(take (n-1) (t()));
+
+(*
+        These are the four simple stream constructed with from.
+        Nothing special using simple generators (successor, identity and unary negative
+        *)
+val nat    = from 1.0 (fn x => x + 1.0);
+val one    = from 1.0 (fn x => x);
+val zeroes = from 0.0 (fn x => x);
+val alt    = from 1.0 (fn x => ~ x);
+
+(*
+        The multiplication operator. Creates a new stream whose seed is the product
+        of the seed and which encapsulates (in a delay function) a recursive call
+        to multiply the suffixes (two streams again)
+        *)
+fun mul s1 s2 = Cons(head s1 * head s2 : real,fn () => mul (tail s1) (tail s2))
+
+(*
+        The weave function simply swaps the two input streams at each recursive calls
+        peeling off an element from s1 for the new head and passing the tail of s1 and s2
+        to the recursive call, taking care of swaping their order -- so that the next peeling
+        is on the _other_ stream --
+        *)
+fun weave s1 s2 = Cons(head s1,fn () => weave s2 (tail s1));
+
+(*
+        The frac stream produces a stream of inverse. Completely straightforward.
+        *)
+fun frac s1 = Cons(1.0 / (head s1),fn () =>  frac (tail s1));
+
+(*
+        The factorial stream definition first creates a hidden helper function facts.
+        To understand the code, first consider the body of the helper function facts.
+        It creates a stream seeded at 1.0 and its delayed tail multiplies two streams
+        (as expected). The first stream passed to the multiplication is the factorial
+        stream itself! The second, is the natural stream. Note how the mul
+        stream operator will repeatedly peel off an element from each stream to produce
+        the head of the suffix of the factorial stream.  The only subtelty is that I need
+        to refer to the factorial stream to build the factorial stream. So it is a recursive
+        definition and cannot be a simple "val". To get this effect, I define the
+        factorial stream as a function that takes the unit value and produces the actual
+        stream when "prodded" with such a unit value. The first time it gets prodded,
+        is the (facts ()) main call that returns the entire stream. The next time is
+        embedded in the delayed body on the call to the multiplication operator.
+        Note that the factorial stream is indeed (1,1,2,6,24,120,....), i.e., 5! is the
+        sixth element in the stream.
+        *)
+
+val fs = let fun facts () = Cons(1.0, fn () => mul (facts ()) nat)
+                                in facts ()
+                        end;
+
+(*
+        The stream px is the successive powers of x: (x^0,x^1,x^2,....)
+        *)
+fun px x = from 1.0 (fn y=>y * x)
+
+(*
+        Eval is straightforward. It multiplies the power stream with the coefficient stream
+        to obtain the "term stream" and takes the first n terms of that stream that it
+        passes to the foldr higher-order to be summed up.
+        *)
+
+fun eval s x n = foldr (op +) 0.0 (take n (mul (px x) s));
+
+(*
+        The exponential stream defines a suitable coefficient stream based on the inverse
+        of the factorial stream and passes that to the eval function defined above.
+        *)
+fun ex x   = eval (frac fs) x 10
+
+(*
+        The cosine stream is equally easy to define. It first creates a coefficient stream
+        obtained by multiplying the weaving of an alternating (+1,-1,+1,-1,....) stream with a
+        zero stream (0,0,0,.....) with the inverse of the factorial stream, namely, we multiply
+        the inverse of the factorial stream by (+1,0,-1,0,+1,0,-1,0,....)
+        *)
+fun cosx x = let val cos = mul (frac fs) (weave alt zeroes)
+             in eval cos x 10
+             end;
+
+(* Interestingly, the sine stream is a very simple variation    *)
+fun sinx x = let val sin = mul (frac fs) (weave zeroes alt)
+             in eval sin x 10
+             end;
